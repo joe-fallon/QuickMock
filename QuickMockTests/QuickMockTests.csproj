@@ -45,8 +45,16 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MethodCallTests.cs" />
+    <Compile Include="MethodReturnValueTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuickMockTests.cs" />
+    <Compile Include="MockTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuickMock\QuickMock.csproj">
+      <Project>{63A623D2-3118-4C0D-BC2D-66E7A118CFD8}</Project>
+      <Name>QuickMock</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

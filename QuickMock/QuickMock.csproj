@@ -36,7 +36,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="QuickMock.cs" />
+    <Compile Include="MethodCall.cs" />
+    <Compile Include="MethodReturnValue.cs" />
+    <Compile Include="Mock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
