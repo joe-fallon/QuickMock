@@ -9,11 +9,13 @@ namespace QuickMock
     {
         private List<MethodCall> m_methodCalls;
         private List<MethodReturnValue> m_methodReturns;
+        private List<OutParameter> m_outParams;
 
         public Mock()
         {
             this.m_methodCalls   = new List<MethodCall>();
             this.m_methodReturns = new List<MethodReturnValue>();
+            this.m_outParams     = new List<OutParameter>();
         }
 
 
@@ -153,6 +155,34 @@ namespace QuickMock
             }
 
             this.m_methodReturns.Add(methodReturn);
+        }
+
+
+        public void SetOutParam(string methodName, string paramName, object outVal, int callCount=0)
+        {
+            OutParameter outParam = new OutParameter(methodName, paramName, outVal, callCount);
+            this.m_outParams.Add(outParam);
+        }
+
+
+        public object GetOutParam(string methodName, string paramName)
+        {
+            // callCount is set to n+1 due to GetOutParam being always called before
+            // MethodCalled is called.
+            int callCount = GetMethodCallCount(methodName) + 1;
+            
+            foreach(OutParameter outParam in this.m_outParams)
+            {
+                if(outParam.MethodName == methodName && outParam.ParamName == paramName)
+                {
+                    if(outParam.CallCount == callCount || outParam.CallCount == 0)
+                    {
+                        return outParam.OutVal;
+                    }
+                }
+            }
+
+            return null;
         }
 
 

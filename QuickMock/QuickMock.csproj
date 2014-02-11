@@ -39,6 +39,7 @@
     <Compile Include="MethodCall.cs" />
     <Compile Include="MethodReturnValue.cs" />
     <Compile Include="Mock.cs" />
+    <Compile Include="OutParameter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

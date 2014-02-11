@@ -218,5 +218,26 @@ namespace QuickMockTests
             Assert.AreEqual(1, otherCount);
             Assert.AreEqual(1, thirdCount);
         }
+
+        [TestMethod]
+        public void Test_SetOutParameter_Properly_Sets_Out_Parameters()
+        {
+            int param1 = 0;
+            OutParameterMock outParameterMock = new OutParameterMock();
+            outParameterMock.m_mock.SetOutParam("Method1", "param", 5);
+            outParameterMock.Method1(out param1);
+            Assert.AreEqual(5, param1);
+            outParameterMock.Method1(out param1);
+            Assert.AreEqual(5, param1);
+
+            int param2 = 0;
+            int param3 = 0;
+            outParameterMock.m_mock.SetOutParam("Method2", "param", 6, 1);
+            outParameterMock.m_mock.SetOutParam("Method2", "param", 7, 2);
+            outParameterMock.Method2(out param2);
+            outParameterMock.Method2(out param3);
+            Assert.AreEqual(6, param2);
+            Assert.AreEqual(7, param3);
+        }
     }
 }
